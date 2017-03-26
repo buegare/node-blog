@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= NodeAuth
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  body
+    nav.navbar.navbar-default.navbar-fixed-top#navbar-custom
+      .container
+        ul.nav.navbar-nav
+            li
+                a.navbar-brand(href='/') James Bond
+        ul.nav.navbar-nav.navbar-right
+                li(class=(title == 'Dashboard' ? 'active' : ''))
+                    a(href='/') Home
+                li
+                    a(href='/users/login') About
+                li(class=(title == 'Register' ? 'active' : ''))
+                    a(href='/users/register') Author
+                li(class=(title == 'Log In' ? 'active' : ''))
+                    a(href='/users/logout') Logout
+
+
+              
+    .container
+        block content
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script(src='/javascripts/bootstrap.js')
+    script(src='/javascripts/alert_messages.js')
