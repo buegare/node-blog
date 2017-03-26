@@ -23,6 +23,6 @@ module.exports = Post;
 module.export.getLastPost = function(cb) {
 	this.find(function (err, posts) {
 	  if (err) return console.error(err);
-	  console.log(posts);
+	  return cb(posts);
 	});
 };

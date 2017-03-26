@@ -1,5 +1,10 @@
 extends layout
 
 block content
-	div.content-area
-		h1 Logged in users only
+	.row.content-area
+		.col-xs-2
+			h3 sidebar area
+		.col-xs-10
+			h5= `${post.category} ${post.date}`
+			h3= post.title
+			p= post.body
