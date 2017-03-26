@@ -1,0 +1,12 @@
+#navbar-custom {
+  background-color: white;
+  border: none;
+}
+
+#navbar-custom .container {
+  border-bottom: 1px solid #eee;
+}
+
+.content-area {
+  margin-top: 90px;
+}

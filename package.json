@@ -1,0 +1,23 @@
+{
+  "name": "node-blog",
+  "version": "1.0.0",
+  "description": "Simple blog build with node/express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "node",
+    "express",
+    "pug"
+  ],
+  "author": "Bruno Buegare",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "pug": "^2.0.0-beta11",
+    "serve-favicon": "^2.4.2"
+  }
+}
