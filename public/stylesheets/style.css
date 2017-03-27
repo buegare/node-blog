@@ -10,3 +10,14 @@
 .content-area {
   margin-top: 90px;
 }
+
+#logout {
+    margin-top: 3px;
+    color: white;
+    padding: 10px 15px;
+}
+
+#logout:hover {
+    background-color: #a94442;
+    border-color: #d9534f;
+}
