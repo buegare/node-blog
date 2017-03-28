@@ -2,9 +2,9 @@ extends layout
 
 block content
 	.row.content-area
-		.col-xs-2
+		.col-xs-3#side-bar
 			h3 sidebar area
-		.col-xs-10
+		.col-xs-9
 			h5= `${post.category} ${post.date} ${post.comments.length}`
 			h3= post.title
 			p= post.body

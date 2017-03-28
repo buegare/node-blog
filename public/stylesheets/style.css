@@ -21,3 +21,8 @@
     background-color: #a94442;
     border-color: #d9534f;
 }
+
+#side-bar {
+    border-right: solid 1px #eee;
+    height: 600px
+}
