@@ -3,7 +3,7 @@
   border: none;
 }
 
-#navbar-custom .container {
+#navbar-custom > div {
   border-bottom: 1px solid #eee;
 }
 
@@ -12,9 +12,10 @@
 }
 
 #logout {
-    margin-top: 3px;
-    color: white;
-    padding: 10px 15px;
+  margin-top: 3px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #logout:hover {
@@ -25,4 +26,33 @@
 #side-bar {
     border-right: solid 1px #eee;
     height: 600px
+}
+
+#login {
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-top: 90px;
+    width: 600px;
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.3);
+}
+
+#login h1{
+  color: #777;
+}
+
+#login label{
+  color: #777;
+}
+
+#newpost {
+  margin-top: 3px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 15px;
+}
+
+#newpost:hover {
+    background-color: #337ab7;
+    border-color: #6ea5d4;
 }

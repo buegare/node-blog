@@ -1,14 +1,15 @@
 const express           = require('express');
 const path              = require('path');
 const favicon           = require('serve-favicon');
-// const cookieParser      = require('cookie-parser');
-// const flash             = require('connect-flash');
-// const session           = require('express-session');
+const cookieParser      = require('cookie-parser');
+const flash             = require('connect-flash');
+const session           = require('express-session');
 // const expressValidator  = require('express-validator');
 // const users             = require('./routes/users');
 const index             = require('./routes/index');
+const admin             = require('./routes/admin');
 const logger            = require('morgan');
-// const bodyParser        = require('body-parser');
+const bodyParser        = require('body-parser');
 // const passport          = require('passport');
 // const LocalStrategy     = require('passport-local').Strategy;
 const config            = require('./config/server');
@@ -19,25 +20,25 @@ const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', config.favicon)));
 
 // parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 // configure Express  
-// app.use(cookieParser('keyboard cat'));
+app.use(cookieParser('keyboard cat'));
 // Handle Express Sessions
-// app.use(session({ 
-//   secret: 'secret', 
-//   saveUninitialized: true, 
-//   resave: true, 
-//   cookie: { maxAge: 3600000 }}));
+app.use(session({ 
+  secret: 'secret', 
+  saveUninitialized: true, 
+  resave: true, 
+  cookie: { maxAge: 3600000 }}));
 // Passport init
 // app.use(passport.initialize());
 // app.use(passport.session());
 
 // Show messages
-// app.use(flash());
+app.use(flash());
 
 app.set('views', path.join(__dirname, 'views'));
 
@@ -68,16 +69,26 @@ app.use(logger('common'));
 //   }
 // }));
 
-// app.use((req, res, next) => {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   res.locals.user = req.user || null;
-//   next();
-// });
+// Authentication and Authorization Middleware
+var auth = function(req, res, next) {
+  if (req.session && req.session.user === config.admin.username) {
+    return next();
+  } else {
+    return res.sendStatus(401);
+  }
+};
+
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.admin = req.session.user || null;
+  next();
+});
 
 // Enable server to find our routes
 app.use('/', index);
+app.use('/admin', admin);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler

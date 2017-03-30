@@ -7,7 +7,7 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
-// User Schema
+// Post Schema
 
 let PostSchema = mongoose.Schema({
 	title: { type: String, index: true, require: true },

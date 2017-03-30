@@ -1,30 +1,31 @@
-doctype html
-html
-  head
-    title= NodeAuth
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-  body
+include head
+body
     nav.navbar.navbar-default.navbar-fixed-top#navbar-custom
       .container
         ul.nav.navbar-nav
             li
                 a.navbar-brand(href='/') James Bond
         ul.nav.navbar-nav.navbar-right
-                li(class=(title == 'Dashboard' ? 'active' : ''))
+                li(class=(title == 'Home' ? 'active' : ''))
                     a(href='/') Home
-                li
-                    a(href='/users/login') About
-                li(class=(title == 'Register' ? 'active' : ''))
-                    a(href='/users/register') Author
-                li(class=(title == 'Log In' ? 'active' : ''))
-                    a(href='/users/logout').btn.btn-danger.btn-xs#logout Logout
+                li(class=(title == 'About' ? 'active' : ''))
+                    a(href='/about') About
+                li(class=(title == 'Author' ? 'active' : ''))
+                    a(href='/author') Author
+                if admin
+                    li.dropdown
+                        a(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false").dropdown-toggle Admin
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href="/admin/create/post") New Post
+                            li
+                                a(href='/admin/logout') Logout
 
+    .container.content-area
+        .row
+            .col-xs-3#side-bar
+                h3 sidebar area
+            block content
 
-              
-    .container
-        block content
-
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-    script(src='/javascripts/bootstrap.js')
-    script(src='/javascripts/alert_messages.js')
+include scripts
