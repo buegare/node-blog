@@ -13,6 +13,7 @@ let PostSchema = mongoose.Schema({
 	title: { type: String, index: true, require: true },
 	category: { type: String, require: true },
 	body: { type: String, require: true },
+	image: { type: String},
 	comments: [{ body: String, date: Date, name: String}],
   	date: { type: Date, default: Date.now },
 });
@@ -25,4 +26,8 @@ module.export.getLastPost = function(cb) {
 	  if (err) return console.error(err);
 	  return cb(posts);
 	});
+};
+
+module.export.createPost = function(newPost, callback) {
+	newPost.save(callback);
 };

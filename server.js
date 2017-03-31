@@ -4,7 +4,7 @@ const favicon           = require('serve-favicon');
 const cookieParser      = require('cookie-parser');
 const flash             = require('connect-flash');
 const session           = require('express-session');
-// const expressValidator  = require('express-validator');
+const expressValidator  = require('express-validator');
 // const users             = require('./routes/users');
 const index             = require('./routes/index');
 const admin             = require('./routes/admin');
@@ -52,25 +52,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('common'));
 
 //Validator
-// app.use(expressValidator({
-//   errorFormatter: (param, msg, value) => {
-//       let namespace = param.split('.');
-//       let root = namespace.shift();
-//       let formParam = root;
+app.use(expressValidator({
+  errorFormatter: (param, msg, value) => {
+      let namespace = param.split('.');
+      let root = namespace.shift();
+      let formParam = root;
 
-//     while(namespace.length) {
-//       formParam += '[' + namespace.shift() + ']';
-//     }
-//     return {
-//       param : formParam,
-//       msg   : msg,
-//       value : value
-//     };
-//   }
-// }));
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
 
 // Authentication and Authorization Middleware
-var auth = function(req, res, next) {
+let auth = (req, res, next) => {
   if (req.session && req.session.user === config.admin.username) {
     return next();
   } else {

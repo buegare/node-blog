@@ -3,10 +3,10 @@ const router = express.Router();
 const Post = require('../models/Post.js');
 
 router.get('/', (req, res) => {
-	Post.getLastPost((post) => {
+	Post.getLastPost((posts) => {
 
 		res.render('index', { 
-			post: post[0],
+			posts: posts,
 			title: 'Home'
 		});
 

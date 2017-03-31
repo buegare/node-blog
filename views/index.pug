@@ -1,7 +1,8 @@
 extends layout
 
 block content
-	.col-xs-9
-		h5= `${post.category} ${post.date} ${post.comments.length}`
-		h3= post.title
-		p= post.body
+	if posts
+		each post, i in posts
+			h5= `${post.category} ${post.date} ${post.comments.length}`
+			h3= post.title
+			p= post.body

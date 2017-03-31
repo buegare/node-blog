@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+	#newpost
+		div.form-area.clearfix
+			h1.text-center New Post
+			ul.form-errors
+				if errors
+					each error, i in errors
+						li.alert.alert-danger #{error.msg}
+			form(method='post', action='/admin/create/post', enctype='multipart/form-data')
+				.form-group
+					label Title
+					input.form-control(name='title', type='text', placeholder='Post title', value=(title))
+				.form-group
+					label Body
+					textarea.form-control(name='body', rows='10' type='text', placeholder='Post body', value=(body))
+				.form-group
+					label Category
+					input.form-control(name='category', type='text', placeholder='Post category', value=(category))
+				.form-group
+					label Post Image
+					input.form-control(name='postimage', type='file')
+				input.btn.btn-info.pull-right(name='submit', type='submit', value='Create Post')
