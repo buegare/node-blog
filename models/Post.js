@@ -25,9 +25,12 @@ module.export.getLastPost = function(cb) {
 	this.find(function (err, posts) {
 	  if (err) return console.error(err);
 	  return cb(posts);
-	});
+	}).sort('-date').limit(5);
 };
 
-module.export.createPost = function(newPost, callback) {
-	newPost.save(callback);
+module.export.createPost = function(newPost) {
+	newPost.save((err, post) => {
+		if (err) return console.error(err);
+		console.log(post);
+	});
 };

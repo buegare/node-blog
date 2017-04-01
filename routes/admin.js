@@ -3,6 +3,7 @@ const router = express.Router();
 const Post = require('../models/Post.js');
 const config = require('../config/server');
 const multer  = require('multer');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -48,12 +49,17 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 	let errors = req.validationErrors();
 
 	if(errors) {
+
+		fs.unlink(`./public/images/posts/${req.file.filename}`, err => {
+	        if (err) throw(err);
+		});
+
+
 		res.render('admin/newpost', {
 			errors: errors,
 			title: req.body.title,
 			body: req.body.body,
-			category: req.body.category,
-			postimage: req.file
+			category: req.body.category
 		});
 		return;
 	} else {
@@ -61,14 +67,11 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 			title: req.body.title,
 			body: req.body.body,
 			category: req.body.category,
-			postimage: req.file ? req.file.filename : 'noimage.png'
+			image: req.file ? req.file.filename : 'noimage.png'
 		});
 
 		// Create Post
-		Post.createPost(newPost, (err, post) => {
-			if(err) throw err;
-			console.log(post);
-		});
+		Post.createPost(newPost);
 	}
 
 	// Success message
