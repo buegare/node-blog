@@ -1,3 +1,7 @@
-$( document ).ready( setTimeout(() => {
-    $('.alert-message').fadeOut('slow');
-}, 3000) );
+var $ = require('jquery');
+  
+$(
+	setTimeout(function() {
+		$('.alert-message').fadeOut('slow');
+	},3000)
+);
