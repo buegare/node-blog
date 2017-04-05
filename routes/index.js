@@ -3,9 +3,10 @@ const router = express.Router();
 const Post = require('../models/Post.js');
 
 router.get('/', (req, res) => {
-	Post.getLastPost((posts) => {
+	Post.getPosts((posts) => {
 
 		res.render('index', { 
+			featured: posts.shift(),
 			posts: posts,
 			title: 'Home'
 		});
