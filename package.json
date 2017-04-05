@@ -4,7 +4,9 @@
   "description": "Simple blog build with node/express",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm-run-all --parallel watch:server watch:build",
+    "watch:build": "webpack --watch",
+    "watch:server": "nodemon"
   },
   "keywords": [
     "blog",
@@ -32,6 +34,7 @@
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "node-sass": "^4.5.2",
+    "npm-run-all": "^4.0.2",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.3"
