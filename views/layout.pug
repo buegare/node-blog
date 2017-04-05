@@ -3,26 +3,20 @@ body
     nav.navbar.navbar-default.navbar-fixed-top#navbar-custom
       .container
         ul.nav.navbar-nav
-            li
-                a.navbar-brand(href='/') James Bond
+            li: a.navbar-brand(href='/') James Bond
         ul.nav.navbar-nav.navbar-right
-                li(class=(title == 'Home' ? 'active' : ''))
-                    a(href='/') Home
-                li(class=(title == 'About' ? 'active' : ''))
-                    a(href='/about') About
-                li(class=(title == 'Author' ? 'active' : ''))
-                    a(href='/author') Author
-                if admin
-                    li.dropdown
-                        a(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false").dropdown-toggle Admin
-                            span.caret
-                        ul.dropdown-menu
-                            li
-                                a(href="/admin/create/post") New Post
-                            li
-                                a(href='/admin/logout') Logout
+            li(class=(title == 'Home' ? 'active' : '')): a(href='/') Home
+            li(class=(title == 'About' ? 'active' : '')): a(href='/about') About
+            li(class=(title == 'Author' ? 'active' : '')): a(href='/author') Author
+            if admin
+                li.dropdown
+                    a(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false").dropdown-toggle Admin
+                        span.caret
+                    ul.dropdown-menu
+                        li: a(href="/admin/create/post") New Post
+                        li: a(href='/admin/logout') Logout
 
     .container.content-area
         block content
 
-include scripts
+script(src='/dist/bundle.min.js')
