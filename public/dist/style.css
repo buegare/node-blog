@@ -1,9 +1,8 @@
 #navbar-custom {
   background-color: white;
   border: none; }
-
-#navbar-custom > div {
-  border-bottom: 1px solid #eee; }
+  #navbar-custom div {
+    border-bottom: 1px solid #eee; }
 
 .content-area {
   margin-top: 90px; }
@@ -14,47 +13,37 @@
   margin-top: 90px;
   width: 600px;
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1); }
-
-#login h1 {
-  color: #777; }
-
-#login label {
-  color: #777; }
+  #login h1, #login label {
+    color: #777; }
 
 #newpost {
   border: 1px solid #eee;
   padding: 20px;
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1); }
-
-#newpost label, #newpost h1 {
-  color: #777; }
+  #newpost label, #newpost h1 {
+    color: #777; }
 
 .form-errors {
   padding: 0; }
-
-.form-errors li {
-  list-style: none; }
+  .form-errors li {
+    list-style: none; }
 
 #featured {
   margin-left: 100px;
   width: 960px;
   left: 0px; }
-
-#featured div {
-  left: 920px;
-  top: 105px; }
-
-#featured div:hover {
-  left: 910px;
-  width: 50px; }
-
-#featured img {
-  height: 460px;
-  width: 960px; }
-
-#featured p {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px; }
+  #featured div {
+    left: 920px;
+    top: 105px; }
+    #featured div:hover {
+      left: 910px;
+      width: 50px; }
+  #featured img {
+    height: 460px;
+    width: 960px; }
+  #featured p {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px; }
 
 .post:nth-child(odd) {
   position: relative;
@@ -72,10 +61,9 @@
   position: relative;
   left: 435px;
   top: 80px; }
-
-.post div:hover {
-  left: 425px;
-  width: 50px; }
+  .post div:hover {
+    left: 425px;
+    width: 50px; }
 
 .post div a {
   color: white;
@@ -95,8 +83,18 @@
   width: 475px; }
 
 #arrow-down {
-  height: 50px;
-  width: 80px;
   margin-top: 70px;
   margin-bottom: 50px;
-  cursor: pointer; }
+  cursor: pointer;
+  border: 1px solid #3c763d;
+  text-align: center;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: #3c763d; }
+  #arrow-down:hover {
+    background-color: #3c763d;
+    color: white; }
+  #arrow-down span {
+    font-size: 35px;
+    padding: 8px 0 0 4px; }

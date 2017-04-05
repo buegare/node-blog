@@ -21,7 +21,7 @@ let PostSchema = mongoose.Schema({
 const Post = module.export = db.model('Post', PostSchema);
 module.exports = Post;
 
-module.export.getLastPost = function(cb) {
+module.export.getPosts = function(cb) {
 	this.find(function (err, posts) {
 	  if (err) return console.error(err);
 	  return cb(posts);

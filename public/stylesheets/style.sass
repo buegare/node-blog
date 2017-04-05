@@ -1,126 +1,103 @@
+$lightgray: #777
+$bg-green: #3c763d
+
 #navbar-custom 
-  background-color: white;
-  border: none;
-
-
-#navbar-custom > div 
-  border-bottom: 1px solid #eee;
-
+  background-color: white
+  border: none
+  div
+    border-bottom: 1px solid #eee
 
 .content-area 
-  margin-top: 90px;
+  margin-top: 90px
 
 
 #login 
-    border: 1px solid #eee;
-    padding: 20px;
-    margin-top: 90px;
-    width: 600px;
-    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.1);
-
-
-#login h1
-  color: #777;
-
-
-#login label
-  color: #777;
-
+    border: 1px solid #eee
+    padding: 20px
+    margin-top: 90px
+    width: 600px
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.1)
+    h1, label
+      color: $lightgray
 
 #newpost 
-  border: 1px solid #eee;
-  padding: 20px;
-  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.1);
-
-
-#newpost label, #newpost h1
-  color: #777;
-
+  border: 1px solid #eee
+  padding: 20px
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.1)
+  label, h1
+    color: $lightgray
 
 .form-errors 
-  padding: 0;
-
-
-.form-errors li 
-  list-style: none;
-
+  padding: 0
+  li 
+    list-style: none
 
 #featured 
-  margin-left: 100px;
-  width: 960px;
-  left: 0px;
+  margin-left: 100px
+  width: 960px
+  left: 0px
+  div 
+    left: 920px
+    top: 105px
+    &:hover 
+      left: 910px
+      width: 50px
+  img 
+    height: 460px
+    width: 960px
+  p 
+    border-bottom: 1px solid #eee
+    padding-bottom: 15px 
 
 
-#featured div 
-  left: 920px;
-  top: 105px;
-
-
-#featured div:hover 
-  left: 910px;
-  width: 50px;
-
-
-#featured img 
-  height: 460px;
-  width: 960px;
-
-
-#featured p 
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px; 
-
-
-.post:nth-child(odd) 
-  position: relative;
-  left: 85px;
-  width: 475px;
-
-
-.post:nth-child(even) 
-  position: relative;
-  left: 100px;
-  width: 475px;
-
-
-.post div 
-  background-color: #3c763d;
-  width: 40px;
-  position: relative;
-  left: 435px;
-  top: 80px;
-
-
-.post div:hover 
-  left: 425px;
-  width: 50px;
-
-
-.post div a 
-  color: white;
-  text-decoration: none;
-  padding: 10px 5px 7px 7px;
-  display: block;
-
-
-.post div span:last-child 
-  position: relative;
-  bottom: 2px;
-
-
-.post h5, .post p 
-  color: #777;
-
-
-.post img 
-  height: 223px;
-  width: 475px;
-
+.post
+  &:nth-child(odd) 
+    position: relative
+    left: 85px
+    width: 475px
+  &:nth-child(even) 
+    position: relative
+    left: 100px
+    width: 475px
+  div 
+    background-color: $bg-green
+    width: 40px
+    position: relative
+    left: 435px
+    top: 80px
+    &:hover 
+      left: 425px
+      width: 50px
+  div 
+    a 
+      color: white
+      text-decoration: none
+      padding: 10px 5px 7px 7px
+      display: block
+  div 
+    span
+      &:last-child 
+        position: relative
+        bottom: 2px
+  h5, p 
+    color: $lightgray
+  img 
+    height: 223px
+    width: 475px
 
 #arrow-down 
-  height: 50px;
-  width: 80px;
-  margin-top: 70px;
-  margin-bottom: 50px;
-  cursor: pointer;
-
+  margin-top: 70px
+  margin-bottom: 50px
+  cursor: pointer
+  border: 1px solid $bg-green
+  text-align: center
+  border-radius: 50%
+  height: 50px
+  width: 50px
+  color: $bg-green
+  &:hover
+    background-color: $bg-green
+    color: white
+  span
+    font-size: 35px
+    padding: 8px 0 0 4px
