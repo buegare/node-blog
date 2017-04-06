@@ -2,29 +2,21 @@ extends layout
 
 block content
 	if posts
-		.row
-			#featured.post
-				div
-					a(href='#')
-						span.glyphicon.glyphicon-comment
-						span  #{featured.comments.length}
-				img(src=`/images/posts/${featured.image}` alt=`${featured.image}`).img
-				h5= `${featured.category} ${featured.date.toDateString().substring(4)}`
-				h2= featured.title
-				p= `${featured.body.substr(0, 200)}...`
-		
-		.row
-			each post, i in posts
-				.col-xs-6.post
+		if !load_more_posts
+			.row
+				#featured.post
 					div
 						a(href='#')
 							span.glyphicon.glyphicon-comment
-							span  #{post.comments.length}
-					img(src=`/images/posts/${post.image}` alt=`${post.image}`)
-					h5= `${post.category} ${post.date.toDateString().substring(4)}`
-					h2= post.title
-					p= `${post.body.substr(0, 200)}...`
-		.row
-			.col-xs-1.col-xs-offset-6
-				#arrow-down
-					span.glyphicon.glyphicon-chevron-down
+							span  #{featured.comments.length}
+					img(src=`/images/posts/${featured.image}` alt=`${featured.image}`).img
+					h5= `${featured.category} ${featured.date.toDateString().substring(4)}`
+					h2= featured.title
+					p= `${featured.body.substr(0, 200)}...`
+		.row.load-more-posts
+			include loadposts
+		if !load_more_posts
+			.row
+				.col-xs-1.col-xs-offset-6
+					#arrow-down
+						span.glyphicon.glyphicon-chevron-down

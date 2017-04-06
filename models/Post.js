@@ -21,11 +21,11 @@ let PostSchema = mongoose.Schema({
 const Post = module.export = db.model('Post', PostSchema);
 module.exports = Post;
 
-module.export.getPosts = function(cb) {
+module.export.getPosts = function(skip, limit, cb) {
 	this.find(function (err, posts) {
 	  if (err) return console.error(err);
 	  return cb(posts);
-	}).sort('-date').limit(5);
+	}).sort('-date').skip(skip).limit(limit);
 };
 
 module.export.createPost = function(newPost) {
@@ -33,4 +33,11 @@ module.export.createPost = function(newPost) {
 		if (err) return console.error(err);
 		console.log(post);
 	});
+};
+
+module.export.getPosts2 = function(cb) {
+	this.find(function (err, posts) {
+	  if (err) return console.error(err);
+	  return cb(posts);
+	}).sort('-date').limit(2);
 };

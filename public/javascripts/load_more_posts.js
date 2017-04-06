@@ -3,14 +3,17 @@ var $ = require('jquery');
 $(
   $('#arrow-down').click(function(){
 
-		// if ( content !== "" ) {
-		// 	$.ajax({
-		// 		url: "search_users",
-		// 		type: "GET",
-		// 		data:{ content_from_search_box: content}
-		// 	});
 
-		
-		alert('test test');
+	$.ajax({
+		url: "/",
+		type: "GET",
+		success: function(data) {
+            $(".load-more-posts").append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.err('error ' + textStatus + " " + errorThrown);
+        }
+	});
+
 	})
 );
