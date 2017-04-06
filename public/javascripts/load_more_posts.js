@@ -1,5 +1,3 @@
-var $ = require('jquery');
-
 $(
   $('#arrow-down').click(function(){
 
