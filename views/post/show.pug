@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+	.row
+		.show-post
+			h2= post.title
+			h6 
+				span Published
+				span  #{post.date.toDateString().substring(4)}
+			img(src=`/images/posts/${post.image}` alt=`${post.image}`)
+			h6
+				span Category
+				span  #{post.category}
+			p= post.body
+
+	.row.comments
+		span.glyphicon.glyphicon-comment#comments-icon
+		span  #{post.comments.length}
+		each comment in post.comments
+			.show-post-comments
+				h6
+					span= comment.name
+					span  #{comment.date.toDateString().substring(4)}
+				h6= comment.body
+
+	.row#new-comment
+		form(method='post', action='#', enctype='multipart/form-data')
+				.form-group
+					label Name
+					input.form-control(name='name', type='text', placeholder='Your name', value=(name))
+				.form-group
+					label Comment
+					textarea.form-control(name='body', rows='10' type='text', placeholder='Comment here', value=(body))
+				input.btn.btn-info.pull-right(name='submit', type='submit', value='Post Comment')
