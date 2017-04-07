@@ -35,9 +35,9 @@ module.export.createPost = function(newPost) {
 	});
 };
 
-module.export.getPosts2 = function(cb) {
-	this.find(function (err, posts) {
+module.export.getPostByTitle = function(title, cb) {
+	this.findOne({ 'title': title }, function (err, post) {
 	  if (err) return console.error(err);
-	  return cb(posts);
-	}).sort('-date').limit(2);
+	  return cb(post);
+	});
 };
