@@ -40,4 +40,13 @@ router.get('/author', (req, res) => {
 	});
 });
 
+router.get('/post/:postname', (req, res) => {
+	console.log(req.params.postname);
+	Post.getPostByTitle(req.params.postname.replace(/-/g, " "), (post) => {
+		res.render('post/show', { 
+			post: post
+		});
+	});
+});
+
 module.exports = router;
