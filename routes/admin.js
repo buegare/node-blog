@@ -50,9 +50,11 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 
 	if(errors) {
 
-		fs.unlink(`./public/images/posts/${req.file.filename}`, err => {
-	        if (err) throw(err);
-		});
+		if(req.file) {
+			fs.unlink(`./public/images/posts/${req.file.filename}`, err => {
+		        if (err) throw(err);
+			});
+		}
 
 
 		res.render('admin/newpost', {
