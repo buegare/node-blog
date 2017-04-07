@@ -1,103 +1,139 @@
-$lightgray: #777
+$light-gray: #777
 $bg-green: #3c763d
+$boder-color: #eee
 
-#navbar-custom 
+#navbar-custom
   background-color: white
-  border: none
-  div
-    border-bottom: 1px solid #eee
+  border: 0
 
-.content-area 
+  div
+    border-bottom: 1px solid $boder-color
+
+.content-area
+  margin-left: 307px
   margin-top: 90px
 
 
-#login 
-    border: 1px solid #eee
-    padding: 20px
-    margin-top: 90px
-    width: 600px
-    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.1)
-    h1, label
-      color: $lightgray
-
-#newpost 
-  border: 1px solid #eee
+#login
+  border: 1px solid $boder-color
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, .1)
+  margin-top: 90px
   padding: 20px
-  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.1)
-  label, h1
-    color: $lightgray
+  width: 600px
 
-.form-errors 
+  h1
+    color: $light-gray
+
+  label
+    color: $light-gray
+
+#newpost
+  border: 1px solid $boder-color
+  box-shadow: 0 0 25px 0 rgba(0 , 0, 0, .1)
+  padding: 20px
+
+  label
+    color: $light-gray
+
+  h1
+    color: $light-gray
+
+.form-errors
   padding: 0
-  li 
+
+  li
     list-style: none
 
-#featured 
-  margin-left: 100px
+#featured
   width: 960px
-  left: 0px
-  div 
+
+  div
     left: 920px
     top: 105px
-    &:hover 
+
+    &:hover
       left: 910px
       width: 50px
-  img 
+
+  img
     height: 460px
     width: 960px
-  p 
-    border-bottom: 1px solid #eee
-    padding-bottom: 15px 
+
+  p
+    border-bottom: 1px solid $boder-color
+    padding-bottom: 15px
 
 
 .post
-  &:nth-child(odd) 
-    position: relative
-    left: 85px
-    width: 475px
-  &:nth-child(even) 
-    position: relative
-    left: 100px
-    width: 475px
-  div 
+  width: 475px
+
+  &:nth-child(odd)
+    padding-left: 0
+
+  div
     background-color: $bg-green
-    width: 40px
-    position: relative
     left: 435px
+    position: relative
     top: 80px
-    &:hover 
+    width: 40px
+
+    &:hover
       left: 425px
       width: 50px
-  div 
-    a 
+
+    a
       color: white
-      text-decoration: none
-      padding: 10px 5px 7px 7px
       display: block
-  div 
+      padding: 10px 5px 7px 7px
+      text-decoration: none
+
     span
-      &:last-child 
-        position: relative
+
+      &:last-child
         bottom: 2px
-  h5, p 
-    color: $lightgray
-  img 
+        position: relative
+
+  h5
+    color: $light-gray
+
+  p
+    color: $light-gray
+
+  img
     height: 223px
     width: 475px
 
-#arrow-down 
-  margin-top: 70px
-  margin-bottom: 50px
-  cursor: pointer
+#arrow-down
   border: 1px solid $bg-green
-  text-align: center
   border-radius: 50%
-  height: 50px
-  width: 50px
   color: $bg-green
+  cursor: pointer
+  height: 50px
+  margin: 70px 0 50px 457px
+  width: 50px
+  text-align: center
+
   &:hover
     background-color: $bg-green
     color: white
+
   span
     font-size: 35px
     padding: 8px 0 0 4px
+
+.show-post
+  width: 960px
+
+  img
+    height: 460px
+    margin: 30px 0
+    width: 960px
+
+  p
+    color: $light-gray
+    font-size: 16px
+    margin-bottom: 30px
+    text-align: justify
+
+  h6
+    color: $light-gray
