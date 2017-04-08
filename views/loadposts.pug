@@ -1,12 +1,13 @@
-each post, i in posts
+each post in posts
 	.col-xs-6.post
 		div
-			a(href='#')
+			a(href=`/post/${post.title.replace(/\s+/g, "-")}`)
 				span.glyphicon.glyphicon-comment
 				span  #{post.comments.length}
-		img(src=`/images/posts/${post.image}` alt= post.image)
+		a(href=`/post/${post.title.replace(/\s+/g, "-")}`)
+			img(src=`/images/posts/${post.image}` alt= post.image)
 		h5
-			span #{featured.category}
-			span  #{featured.date.toDateString().substring(4)}
+			span #{post.category}
+			span  #{post.date.toDateString().substring(4)}
 		h2= post.title
 		p= `${post.body.substr(0, 200)}...`
