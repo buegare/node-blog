@@ -6,7 +6,7 @@ block content
 			.row
 				#featured.post
 					div
-						a(href='#')
+						a(href=`/post/${featured.title.replace(/\s+/g, "-")}`)
 							span.glyphicon.glyphicon-comment
 							span  #{featured.comments.length}
 					a(href=`/post/${featured.title.replace(/\s+/g, "-")}`)
