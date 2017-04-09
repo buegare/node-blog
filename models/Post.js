@@ -14,7 +14,7 @@ let PostSchema = mongoose.Schema({
 	category: { type: String, require: true },
 	body: { type: String, require: true },
 	image: { type: String},
-	comments: [{ body: String, date: Date, name: String}],
+	comments: [{ body: String, date: { type: Date, default: Date.now }, name: String}],
   	date: { type: Date, default: Date.now },
 });
 
@@ -39,5 +39,18 @@ module.export.getPostByTitle = function(title, cb) {
 	this.findOne({ 'title': title }, function (err, post) {
 	  if (err) return console.error(err);
 	  return cb(post);
+	});
+};
+
+module.export.addNewComment = function(new_comment, cb) {
+	this.findOne({ 'title' : new_comment.post }, function (err, post) {
+		if (err) return console.error(err);
+
+		post.comments.push({name: new_comment.name, body: new_comment.body});
+		
+		post.save((err, post) => {
+			if (err) return console.error(err);
+			cb(post);
+		});
 	});
 };
