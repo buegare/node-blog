@@ -14,7 +14,7 @@ block content
 					input.form-control(name='title', type='text', placeholder='Post title', value=(title))
 				.form-group
 					label Body
-					textarea.form-control(name='body', rows='10' type='text', placeholder='Post body', value=(body))
+					textarea.form-control(name='body', rows='10' type='text', placeholder='Post body') #{body}
 				.form-group
 					label Category
 					input.form-control(name='category', type='text', placeholder='Post category', value=(category))
