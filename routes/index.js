@@ -41,12 +41,48 @@ router.get('/author', (req, res) => {
 });
 
 router.get('/post/:postname', (req, res) => {
-	console.log(req.params.postname);
 	Post.getPostByTitle(req.params.postname.replace(/-/g, " "), (post) => {
 		res.render('post/show', { 
 			post: post
 		});
 	});
+});
+
+router.post('/create/comment', (req, res, next) => {
+
+	// Form validation
+	req.checkBody('name', 'Name field is required').notEmpty();
+	req.checkBody('body', "Your comment can't be blank").notEmpty();
+	
+	// Check for errors
+	let errors = req.validationErrors();
+
+	if(errors) {
+		res.render('post/comment/new', {
+			errors: errors,
+			name: req.body.name,
+			body: req.body.body
+		});
+		return;
+	} else {
+		let new_comment = {
+			name: req.body.name,
+			body: req.body.body,
+			post: req.body.post_title.replace(/-/g, " ")
+		};
+
+		// Create New Comment
+
+		Post.addNewComment(new_comment, (post) => {
+			res.render('post/comment/index', { 
+				post: post
+			});
+			return;
+		});
+
+
+	}
+
 });
 
 module.exports = router;
