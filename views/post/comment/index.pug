@@ -1,0 +1,10 @@
+.target-comments
+	span.glyphicon.glyphicon-comment#comments-icon
+	span  #{post.comments.length}
+	each comment in post.comments
+		.show-post-comments
+			h6
+				span= comment.name
+				span  #{comment.date.toDateString().substring(4)}
+			h6= comment.body
+

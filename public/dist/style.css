@@ -37,11 +37,11 @@
 #featured {
   width: 100%; }
   #featured div {
-    left: 920px;
+    left: 900px;
     top: 105px; }
     #featured div:hover {
-      left: 910px;
-      width: 50px; }
+      left: 890px;
+      width: 70px; }
   #featured img {
     height: 460px;
     width: 100%; }
@@ -55,13 +55,13 @@
     padding-left: 0; }
   .post div {
     background-color: #3c763d;
-    left: 435px;
+    left: 415px;
     position: relative;
     top: 80px;
-    width: 40px; }
+    width: 60px; }
     .post div:hover {
-      left: 425px;
-      width: 50px; }
+      left: 405px;
+      width: 70px; }
     .post div a {
       color: white;
       display: block;
@@ -96,32 +96,32 @@
     font-size: 35px;
     padding: 8px 0 0 4px; }
 
-.show-post img {
+#show-post img {
   height: 460px;
   margin-top: 30px;
   width: 100%; }
 
-.show-post h6:nth-of-type(2) {
+#show-post h6:nth-of-type(2) {
   margin: 30px 0; }
 
-.show-post h6 span:first-child {
+#show-post h6 span:first-child {
   background: #eee;
   padding: 5px; }
 
-.show-post h6 span:last-child {
+#show-post h6 span:last-child {
   color: #777; }
 
-.show-post p {
+#show-post p {
   color: #777;
   font-size: 16px;
   text-align: justify; }
 
-.comments {
+#comments {
   margin-bottom: 30px;
   margin-top: 30px;
   border: 1px solid #eee;
   padding: 30px; }
-  .comments #comments-icon {
+  #comments #comments-icon {
     font-size: 30px; }
 
 .show-post-comments h6:last-child {

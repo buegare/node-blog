@@ -1,0 +1,13 @@
+.target-new-comment-form
+	if errors
+		ul.form-errors
+				each error, i in errors
+					li.alert.alert-danger #{error.msg}
+	form
+		.form-group
+			label Name
+			input.form-control(name='name', type='text', placeholder='Your name', value=(name))
+		.form-group
+			label Comment
+			textarea.form-control(name='body', rows='10' type='text', placeholder='Comment here') #{body}
+		input.btn.btn-info.pull-right(type='button', value='Post Comment')
