@@ -1,4 +1,4 @@
-$('#arrow-down').click(function(){
+$('#arrow-down').on('click', function(){
 
 	$.ajax({
 		url: "/",
