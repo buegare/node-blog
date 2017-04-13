@@ -1,13 +1,19 @@
-each post in posts
+mixin post(index)
 	.col-xs-6.post
-		div
-			a(href=`/post/${post.title.replace(/\s+/g, "-")}`)
-				span.glyphicon.glyphicon-comment
-				span  #{post.comments.length}
-		a(href=`/post/${post.title.replace(/\s+/g, "-")}`)
-			img(src=`/images/posts/${post.image}` alt= post.image)
-		h5
-			span #{post.category}
-			span  #{post.date.toDateString().substring(4)}
-		h2= post.title
-		p= `${post.body.substr(0, 200)}...`
+			div
+				a(href=`/post/${posts[index].title.replace(/\s+/g, "-")}`)
+					span.glyphicon.glyphicon-comment
+					span  #{posts[index].comments.length}
+			a(href=`/post/${posts[index].title.replace(/\s+/g, "-")}`)
+				img(src=`/images/posts/${posts[index].image}` alt= posts[index].image)
+			h5 #[span #{posts[index].category}] #{posts[index].date.toDateString().substring(4)}
+			h2= posts[index].title
+			p= `${posts[index].body.substr(0, 200)}...`
+
+
+
+
+- for (var x = 0; x < posts.length; x += 2) 
+	.row
+		+post(x)
+		+post(x + 1)
