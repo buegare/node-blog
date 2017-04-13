@@ -6,10 +6,8 @@ const config = require('../config/post');
 router.get('/', (req, res) => {
 	if(req.xhr) {
 		Post.getPosts(req.session.posts, config.post.limit, (posts) => {
-
 			res.render('loadposts', { 
 				posts: posts,
-				load_more_posts: true
 			});
 
 		});
@@ -42,9 +40,19 @@ router.get('/author', (req, res) => {
 
 router.get('/post/:postname', (req, res) => {
 	Post.getPostByTitle(req.params.postname.replace(/-/g, " "), (post) => {
-		res.render('post/show', { 
-			post: post
-		});
+		if(post) {
+			if(req.xhr) {
+				res.render('post/edit', { 
+					post: post
+				});
+			} else {
+				res.render('post/show', { 
+					post: post
+				});
+			}
+		} else {
+			res.redirect('/');
+		}
 	});
 });
 
@@ -83,6 +91,44 @@ router.post('/create/comment', (req, res, next) => {
 
 	}
 
+});
+
+router.post('/edit/post', (req, res) => {
+
+	console.log(req.body);
+	res.end();
+
+	// let new_comment = {
+	// 	name: req.body.name,
+	// 	body: req.body.body,
+	// 	post: req.body.post_title.replace(/-/g, " ")
+	// };
+
+
+
+	// Post.updatePost(post_edited, (post) => {
+	// 	res.render('post/show', { 
+	// 		post: post
+	// 	});
+	// });
+
+	
+
+});
+
+router.delete('/delete/post', (req, res) => {
+	Post.deletePost(req.body.postId);
+	res.end();
+});
+
+
+router.delete('/delete/comment', (req, res) => {
+	Post.deleteComment(req.body, (post) => {
+		res.render('post/comment/index', { 
+			post: post
+		});
+		return;
+	});
 });
 
 module.exports = router;
