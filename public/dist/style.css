@@ -70,10 +70,13 @@
     .post div span:last-child {
       bottom: 2px;
       position: relative; }
-  .post h5 span:first-child {
-    font-weight: bold; }
-  .post h5 span:last-child {
+  .post h5 {
     color: #777; }
+    .post h5 span:first-child {
+      background: #eee;
+      padding: 5px; }
+  .post h2 {
+    word-wrap: break-word; }
   .post p {
     color: #777; }
   .post img {
@@ -96,22 +99,52 @@
     font-size: 35px;
     padding: 8px 0 0 4px; }
 
-#show-post img {
+#show-post #delete-post-btn {
+  margin-left: 10px; }
+
+#show-post .post-title-n-published-date h2 {
+  word-wrap: break-word; }
+
+#show-post .post-title-n-published-date h6 {
+  color: #777; }
+  #show-post .post-title-n-published-date h6 span {
+    background: #eee;
+    padding: 5px; }
+
+#show-post .post-delete-btn-n-decision-icons {
+  margin-bottom: 40px; }
+  #show-post .post-delete-btn-n-decision-icons span:nth-of-type(1) {
+    color: #d9534f;
+    padding-left: 5px;
+    font-size: 16px;
+    position: relative;
+    top: 40px;
+    left: 190px;
+    cursor: pointer;
+    display: none; }
+  #show-post .post-delete-btn-n-decision-icons span:nth-of-type(2) {
+    color: #5cb85c;
+    padding-left: 0;
+    font-size: 16px;
+    position: relative;
+    top: 39px;
+    left: 190px;
+    cursor: pointer;
+    display: none; }
+
+#show-post .post-image img {
   height: 460px;
   margin-top: 30px;
   width: 100%; }
 
-#show-post h6:nth-of-type(2) {
-  margin: 30px 0; }
-
-#show-post h6 span:first-child {
-  background: #eee;
-  padding: 5px; }
-
-#show-post h6 span:last-child {
+#show-post .post-category h6 {
+  margin: 30px 0;
   color: #777; }
+  #show-post .post-category h6 span {
+    background: #eee;
+    padding: 5px; }
 
-#show-post p {
+#show-post .post-category p {
   color: #777;
   font-size: 16px;
   text-align: justify; }
@@ -124,17 +157,38 @@
   #comments #comments-icon {
     font-size: 30px; }
 
-.show-post-comments h6:last-child {
-  color: #777;
-  margin-left: 20px;
-  margin-bottom: 30px; }
+.comments-list .name-n-date h6:first-child {
+  display: inline;
+  color: #777; }
 
-.show-post-comments h6 span:first-child {
+.comments-list .name-n-date h6 span {
   background: #eee;
   padding: 5px; }
 
-.show-post-comments h6 span:last-child {
-  color: #777; }
+.comments-list .btn-n-decision-icons span:nth-of-type(1) {
+  color: #5cb85c;
+  padding-left: 10px;
+  font-size: 16px;
+  position: relative;
+  top: 5px;
+  left: 0px;
+  cursor: pointer;
+  display: none; }
+
+.comments-list .btn-n-decision-icons span:nth-of-type(2) {
+  color: #d9534f;
+  padding-left: 5px;
+  font-size: 16px;
+  position: relative;
+  top: 5px;
+  left: 0px;
+  cursor: pointer;
+  display: none; }
+
+.comments-list .comment-body h6 {
+  color: #777;
+  margin-left: 20px;
+  margin-bottom: 30px; }
 
 #new-comment {
   background: #f1f1f1;

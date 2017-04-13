@@ -1,3 +1,4 @@
 require('../stylesheets/style.sass');
-require('./post/index.js');
-require('./post/comment/new.js');
+require('./index.js');
+require('./comments.js');
+require('./post.js');
