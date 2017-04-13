@@ -30,7 +30,6 @@ function editPost() {
 	$.ajax({
 		url: "/post/" + postTitle,
 		type: "GET",
-		//data: new_comment,
 		success: function(data) {
 			$("#edit-target").html(data);
         },
