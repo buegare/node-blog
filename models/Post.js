@@ -54,3 +54,23 @@ module.export.addNewComment = function(new_comment, cb) {
 		});
 	});
 };
+
+module.export.deleteComment = function(comment, cb) {
+	this.findOne({ 'title' : comment.postTitle }, function (err, post) {
+		if (err) return console.error(err);
+
+		post.comments.splice(comment.commentId, 1);
+		
+		post.save((err, post) => {
+			if (err) return console.error(err);
+			cb(post);
+		});
+	});
+};
+
+module.export.deletePost = function(postId) {
+	this.findByIdAndRemove(postId, function (err, post) {  
+		if (err) return console.error(err);
+		console.log('REMOVED', post);
+	});
+};
