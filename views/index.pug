@@ -1,24 +1,25 @@
 extends layout
 
 block content
-	if posts
-		if !load_more_posts
-			.row
-				#featured.post
-					div
-						a(href=`/post/${featured.title.replace(/\s+/g, "-")}`)
-							span.glyphicon.glyphicon-comment
-							span  #{featured.comments.length}
+	if !featured
+		.row
+			h1 There is no Post yet !
+	else
+		.row
+			#featured.post
+				div
 					a(href=`/post/${featured.title.replace(/\s+/g, "-")}`)
-						img(src=`/images/posts/${featured.image}` alt= featured.image)
-					h5
-						span #{featured.category}
-						span  #{featured.date.toDateString().substring(4)}
-					h2= featured.title
-					p= `${featured.body.substr(0, 200)}...`
+						span.glyphicon.glyphicon-comment
+						span  #{featured.comments.length}
+				a(href=`/post/${featured.title.replace(/\s+/g, "-")}`)
+					img(src=`/images/posts/${featured.image}` alt= featured.image)
+				h5 #[span #{featured.category}] #{featured.date.toDateString().substring(4)}
+				h2= featured.title
+				p= `${featured.body.substr(0, 200)}...`
+		
 		.row.load-more-posts
 			include loadposts
-		if !load_more_posts
-			.row
-				#arrow-down
-					span.glyphicon.glyphicon-chevron-down
+		
+		.row
+			#arrow-down
+				span.glyphicon.glyphicon-chevron-down
