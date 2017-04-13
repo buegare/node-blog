@@ -48,5 +48,3 @@ $('#delete-post-icon-remove').on('click', hideDecisionIcons);
 $('#delete-post-icon-ok').on('click', deletePost);
 
 $('#edit-post-btn').on('click', editPost);
-
-$('#save-post-btn').on('click', savePost);
