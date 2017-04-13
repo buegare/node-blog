@@ -1,16 +1,21 @@
 extends ../layout
 
 block content
-	.row#show-post
-		h2= post.title
-		h6 
-			span Published
-			span  #{post.date.toDateString().substring(4)}
-		img(src=`/images/posts/${post.image}` alt=`${post.image}`)
-		h6
-			span Category
-			span  #{post.category}
-		p= post.body
+	#edit-target
+		.row#show-post
+			.row.post-delete-btn-n-decision-icons
+				button(postId= post._id).btn.btn-danger.pull-right#delete-post-btn Delete Post
+				button(type='button', postTitle= post.title).btn.btn-info.pull-right#edit-post-btn Edit Post
+				span.glyphicon.glyphicon-remove.pull-right#delete-post-icon-remove
+				span.glyphicon.glyphicon-ok.pull-right#delete-post-icon-ok
+			.post-title-n-published-date
+				h2= post.title
+				h6 #[span Published] #{post.date.toDateString().substring(4)}
+			.post-image
+				img(src=`/images/posts/${post.image}` alt=`${post.image}`)
+			.post-category
+				h6 #[span Category] #{post.category}
+				p= post.body
 
 	.row#comments
 		include comment/index
