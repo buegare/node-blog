@@ -20,13 +20,14 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-		if(req.body.username == config.admin.username &&
-		 req.body.password == config.admin.password) {
+		if( req.body.username == config.admin.username &&
+			req.body.password == config.admin.password) {
+
 		 	req.session.user = req.body.username;
 			res.redirect('/');	
 		} else {
 			req.flash('error_msg', 'Invalid credentials');
-			res.render('./admin/login');
+			res.redirect('/admin');
 		}
 	}
 );
