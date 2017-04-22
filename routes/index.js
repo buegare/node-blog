@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const config = require('../config/post');
+const fs = require('fs');
 
 router.get('/', (req, res) => {
 	if(req.xhr) {
@@ -38,8 +39,8 @@ router.get('/author', (req, res) => {
 	});
 });
 
-router.get('/post/:postname', (req, res) => {
-	Post.getPostByTitle(req.params.postname.replace(/-/g, " "), (post) => {
+router.get('/post/:slug', (req, res) => {
+	Post.getPostBySlug(req.params.slug, (post) => {
 		if(post) {
 			if(req.xhr) {
 				res.render('post/edit', { 
@@ -76,7 +77,7 @@ router.post('/create/comment', (req, res, next) => {
 		let new_comment = {
 			name: req.body.name,
 			body: req.body.body,
-			post: req.body.post_title.replace(/-/g, " ")
+			slug: req.body.post_slug
 		};
 
 		// Create New Comment
@@ -93,31 +94,29 @@ router.post('/create/comment', (req, res, next) => {
 
 });
 
-router.post('/edit/post', (req, res) => {
+router.post('/post/:post_id/edit', (req, res) => {
 
-	console.log(req.body);
-	res.end();
+	let edited_post = {
+		id: req.params.post_id,
+		title: req.body.title,
+		category: req.body.category,
+		body: req.body.body
+	};
 
-	// let new_comment = {
-	// 	name: req.body.name,
-	// 	body: req.body.body,
-	// 	post: req.body.post_title.replace(/-/g, " ")
-	// };
-
-
-
-	// Post.updatePost(post_edited, (post) => {
-	// 	res.render('post/show', { 
-	// 		post: post
-	// 	});
-	// });
-
-	
-
+	Post.updatePost(edited_post, (post) => {
+		res.redirect(`/post/${post.slug}`);
+	});
 });
 
 router.delete('/delete/post', (req, res) => {
 	Post.deletePost(req.body.postId);
+
+	if(req.body.img) {
+		fs.unlink(`./public/images/posts/${req.body.img}`, err => {
+	        if (err) throw(err);
+		});
+	}
+
 	res.end();
 });
 
