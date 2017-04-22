@@ -3,3 +3,4 @@ node_modules
 public/images/posts/
 TODO.txt
 .sass-lint.yml
+npm-debug.log
