@@ -11,6 +11,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 let PostSchema = mongoose.Schema({
 	title: { type: String, index: true, require: true },
+	slug: { type: String, require: true },
 	category: { type: String, require: true },
 	body: { type: String, require: true },
 	image: { type: String},
@@ -21,6 +22,12 @@ let PostSchema = mongoose.Schema({
 const Post = module.export = db.model('Post', PostSchema);
 module.exports = Post;
 
+const slugfy = (post_title) => {
+	return post_title.replace(/\s+/g, '-').
+					  replace(/(-)?\?$/g, '').
+					  toLowerCase();
+};
+
 module.export.getPosts = function(skip, limit, cb) {
 	this.find(function (err, posts) {
 	  if (err) return console.error(err);
@@ -29,21 +36,24 @@ module.export.getPosts = function(skip, limit, cb) {
 };
 
 module.export.createPost = function(newPost) {
+	
+	newPost.slug = slugfy(newPost.title);
+
 	newPost.save((err, post) => {
 		if (err) return console.error(err);
 		console.log(post);
 	});
 };
 
-module.export.getPostByTitle = function(title, cb) {
-	this.findOne({ 'title': title }, function (err, post) {
+module.export.getPostBySlug = function(slug, cb) {
+	this.findOne({ 'slug': slug }, function (err, post) {
 	  if (err) return console.error(err);
 	  return cb(post);
 	});
 };
 
 module.export.addNewComment = function(new_comment, cb) {
-	this.findOne({ 'title' : new_comment.post }, function (err, post) {
+	this.findOne({ 'slug' : new_comment.slug }, function (err, post) {
 		if (err) return console.error(err);
 
 		post.comments.push({name: new_comment.name, body: new_comment.body});
@@ -56,8 +66,8 @@ module.export.addNewComment = function(new_comment, cb) {
 };
 
 module.export.deleteComment = function(comment, cb) {
-	this.findOne({ 'title' : comment.postTitle }, function (err, post) {
-		if (err) return console.error(err);
+	this.findById(comment.postId, function (err, post) {
+	  if (err) return console.error(err);
 
 		post.comments.splice(comment.commentId, 1);
 		
@@ -71,6 +81,18 @@ module.export.deleteComment = function(comment, cb) {
 module.export.deletePost = function(postId) {
 	this.findByIdAndRemove(postId, function (err, post) {  
 		if (err) return console.error(err);
-		console.log('REMOVED', post);
+	});
+};
+
+module.export.updatePost = function(edited_post, cb) {
+	this.findByIdAndUpdate(edited_post.id, {
+		$set: { 
+			title: edited_post.title, 
+			category: edited_post.category, 
+			body: edited_post.body,
+			slug: slugfy(edited_post.title)
+		}}, { new: true }, function (err, post) {
+	  if (err) return console.error(err);
+	  cb(post);
 	});
 };
