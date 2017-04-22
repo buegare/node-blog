@@ -1,14 +1,20 @@
 include ../head
 
 body
-	.container#login
-		div.form-area.clearfix
-			h1.text-center Log In
-			form(method='post', action='/admin')
-				.form-group
-					label Username
-					input.form-control(name='username', type='text', placeholder='Username')
-				.form-group
-					label Password
-					input.form-control(name='password', type='password', placeholder='Enter Password')
-				input.btn.btn-info.pull-right(name='submit', type='submit', value='Login')
+	.container
+		.row
+			.col-xs-12
+				#login
+					if error_msg != ''
+						div.alert.alert-danger.alert-message 
+							p #{error_msg}
+					div.form-area.clearfix
+						h1.text-center Log In
+						form(method='post', action='/admin')
+							.form-group
+								label Username
+								input.form-control(name='username', type='text', placeholder='Username')
+							.form-group
+								label Password
+								input.form-control(name='password', type='password', placeholder='Enter Password')
+							input.btn.btn-info.pull-right(name='submit', type='submit', value='Login')

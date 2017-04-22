@@ -9,16 +9,22 @@ $remove-color: #d9534f
   background: $bg-gray
   padding: 5px
 
-=icon($color, $padding, $top, $left)
+=icon($color, $top, $position)
   color: $color
-  padding-left: $padding
   font-size: 16px
-  position: relative
+  position: $position
   top: $top
-  left: $left
   cursor: pointer
   display: none
 
+=post-image($height, $width)
+  img
+    height: $height
+    width: $width
+    margin: 0 auto
+
+.content-area
+  margin-top: 90px
 
 #navbar-custom
   background-color: white
@@ -27,18 +33,17 @@ $remove-color: #d9534f
   div
     border-bottom: 1px solid $border-color
 
-.content-area
-  margin-left: 307px
-  margin-top: 90px
-  width: 960px;
-
+@media only screen and (max-width: 640px)
+  #navbar-custom
+    position: static
 
 #login
   border: 1px solid $border-color
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, .1)
-  margin-top: 90px
+  margin: 90px auto
   padding: 20px
-  width: 600px
+  width: 640px
+  max-width: 100%
 
   h1
     color: $light-gray
@@ -63,69 +68,63 @@ $remove-color: #d9534f
   li
     list-style: none
 
-#featured
-  width: 100%
+.comment-counter
+  top: 80px
+  width: 960px
+  position: relative
+  margin: 0 auto
+  max-width: 100%
+  display: flex
+  justify-content: flex-end
 
   div
-    left: 900px;
-    top: 105px;
-
-    &:hover
-      left: 890px;
-      width: 70px;
-
-  img
-    height: 460px
-    width: 100%
-
-  p
-    border-bottom: 1px solid $border-color
-    padding-bottom: 15px
-
-
-.post
-  width: 475px
-
-  &:nth-child(odd)
-    padding-left: 0
-
-  div
-    background-color: $bg-green
-    left: 415px
-    position: relative
-    top: 80px
+    background: $bg-green
     width: 60px
 
     &:hover
-      left: 405px
+      left: 980px
       width: 70px
 
-    a
-      color: white
-      display: block
-      padding: 10px 5px 7px 7px
-      text-decoration: none
+  a
+    color: white
+    display: block
+    padding: 10px 5px 7px 7px
+    text-decoration: none
 
-    span
-      &:last-child
-        bottom: 2px
-        position: relative
+.post-img
+  +post-image(460px, 960px)
 
-  h5
-    color: $light-gray
-    span
-      &:first-child
-        +bg-gray
+.post-img-list
+  +post-image(275px, 100%)
 
-  h2
-    word-wrap: break-word
+@media only screen and (max-width: 640px)
+  #featured
+    +post-image(325px, 960px)
 
-  p
-    color: $light-gray
+  .post-img
+    +post-image(325px, 100%)
 
-  img
-    height: 223px
-    width: 475px
+.category
+  +bg-gray
+  color: $light-gray
+
+.post-date
+  color: $light-gray
+  max-width: 960px
+  margin: 10px auto
+
+.post-title
+  max-width: 960px
+  margin: 10px auto
+  word-wrap: break-word
+  text-align: justify
+
+.post-body
+  max-width: 960px
+  margin: 10px auto
+  color: $light-gray
+  word-wrap: break-word
+  text-align: justify
 
 #arrow-down
   border: 1px solid $bg-green
@@ -133,7 +132,7 @@ $remove-color: #d9534f
   color: $bg-green
   cursor: pointer
   height: 50px
-  margin: 70px 0 50px 457px
+  margin: 150px auto;
   width: 50px
   text-align: center
 
@@ -145,82 +144,57 @@ $remove-color: #d9534f
     font-size: 35px
     padding: 8px 0 0 4px
 
-#show-post
-  #delete-post-btn
-      margin-left: 10px
+#delete-post-btn
+  margin-left: 10px
 
-  .post-title-n-published-date
-    h2
-      word-wrap: break-word
 
-    h6
-      color: $light-gray
+.button-area
+  display: flex
+  justify-content: flex-end
+  margin-bottom: 40px
+  max-width: 960px
+  margin: 0 auto 40px auto
+  span
+    &:nth-of-type(1)
+      +icon($remove-color, 40px, absolute)
+      margin-left: -18px
 
-      span
-        +bg-gray
+    &:nth-of-type(2)
+      +icon($ok-color, 39px, absolute)
 
-  .post-delete-btn-n-decision-icons
-    margin-bottom: 40px
-    span
-      &:nth-of-type(1)
-        +icon($remove-color, 5px, 40px, 190px)
-
-      &:nth-of-type(2)
-        +icon($ok-color, 0, 39px, 190px)
-
-  .post-image
-    img
-      height: 460px
-      margin-top: 30px
-      width: 100%
-
-  .post-category
-    h6
-      margin: 30px 0
-      color: $light-gray
-
-      span
-        +bg-gray
-
-    p
-      color: $light-gray
-      font-size: 16px
-      text-align: justify
-
-#comments
-  margin-bottom: 30px
-  margin-top: 30px
-  border: 1px solid $border-color
+.target-comments
   padding: 30px
+  border: 1px solid #eee
+  max-width: 960px;
+  margin: 30px auto
 
-  #comments-icon
-    font-size: 30px
+#comments-icon
+  font-size: 30px
 
 .comments-list
-  .name-n-date
-    h6
-      &:first-child
-        display: inline
-        color: $light-gray
+  margin-left: 20px
+  color: $light-gray
+  &:first-of-type
+    margin-top: 20px
 
-      span
-        +bg-gray
-  
-  .btn-n-decision-icons
-    span
-      &:nth-of-type(1)
-        +icon($ok-color, 10px, 5px, 0px)
+.comment-name
+  +bg-gray
 
-      &:nth-of-type(2)
-        +icon($remove-color, 5px, 5px, 0px)
+.comment-body
+  margin-left: 20px
+ 
+.comment-button-area
+  span
+    &:nth-of-type(1)
+      +icon($ok-color, 5px, relative)
+      margin-left: 10px
 
-  .comment-body
-    h6
-      color: $light-gray
-      margin-left: 20px
-      margin-bottom: 30px
+    &:nth-of-type(2)
+      +icon($remove-color, 5px, relative)
+      margin-left: 5px
 
-#new-comment
+.target-new-comment-form
   background: #f1f1f1
   padding: 30px
-  margin-bottom: 70px
+  margin: 0 auto 70px auto
+  max-width: 960px

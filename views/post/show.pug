@@ -1,23 +1,26 @@
 extends ../layout
 
 block content
-	#edit-target
-		.row#show-post
-			.row.post-delete-btn-n-decision-icons
-				button(postId= post._id).btn.btn-danger.pull-right#delete-post-btn Delete Post
-				button(type='button', postTitle= post.title).btn.btn-info.pull-right#edit-post-btn Edit Post
-				span.glyphicon.glyphicon-remove.pull-right#delete-post-icon-remove
-				span.glyphicon.glyphicon-ok.pull-right#delete-post-icon-ok
-			.post-title-n-published-date
-				h2= post.title
-				h6 #[span Published] #{post.date.toDateString().substring(4)}
-			.post-image
-				img(src=`/images/posts/${post.image}` alt=`${post.image}`)
-			.post-category
-				h6 #[span Category] #{post.category}
-				p= post.body
+	.row
+		.col-xs-12#edit-target
+			if admin
+				.button-area
+					button(type='button', postSlug= post.slug).btn.btn-info#edit-post-btn Edit Post
+					button(postId= post._id).btn.btn-danger#delete-post-btn Delete Post
+					span.glyphicon.glyphicon-remove#delete-post-icon-remove
+					span.glyphicon.glyphicon-ok#delete-post-icon-ok
+			div
+				h2.post-title= post.title
+				h5.post-date #[span.category Published] #{post.date.toDateString().substring(4)}
+			.post-img
+				img(src=`/images/posts/${post.image}` alt=`${post.slug}` imgId=`${post.image}`).img-responsive
+			div
+				h5.post-date #[span.category Category] #{post.category}
+				p.post-body= post.body
 
-	.row#comments
-		include comment/index
-	.row#new-comment
-		include comment/new
+	.row
+		.col-xs-12#comments
+			include comment/index
+	.row
+		.col-xs-12#new-comment
+			include comment/new

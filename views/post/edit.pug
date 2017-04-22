@@ -1,18 +1,19 @@
-.row#show-post
-	form(method='post', action='/edit/post', enctype='multipart/form-data')
-		.row.post-delete-btn-n-decision-icons
-			button(type='button', postId= post._id).btn.btn-danger.pull-right#delete-post-btn Delete Post
-			input.btn.btn-success.pull-right#save-post-btn(name='submit', type='submit', value='Save Post')
-			span.glyphicon.glyphicon-remove.pull-right#delete-post-icon-remove
-			span.glyphicon.glyphicon-ok.pull-right#delete-post-icon-ok
-		.post-title-n-published-date
-			.form-group
-				textarea.form-control(name='title', rows='5' type='text') #{post.title}
-			h6 #[span Published] #{post.date.toDateString().substring(4)}
-		.post-image
-			img(src=`/images/posts/${post.image}` alt=`${post.image}`)
-		.post-category
-			.form-group
-				input.form-control(name='category', type='text', value=(post.category))
-			.form-group
-				textarea.form-control(name='body', rows='10' type='text') #{post.body}
+.row
+	.col-xs-12
+		form(method='post', action=`/post/${post._id}/edit`)
+			.button-area
+				input.btn.btn-success.pull-right#save-post-btn(type='submit', value='Save Post')
+				button(type='button', postId= post._id).btn.btn-danger#delete-post-btn Delete Post
+				span.glyphicon.glyphicon-remove.pull-right#delete-post-icon-remove
+				span.glyphicon.glyphicon-ok.pull-right#delete-post-icon-ok
+			div
+				.form-group
+					textarea.form-control.post-title(name='title', rows='5' type='text') #{post.title}
+				h5.post-date #[span.category Published] #{post.date.toDateString().substring(4)}
+			.post-img
+				img(src=`/images/posts/${post.image}` alt=`${post.image}`).img-responsive
+			div
+				.form-group
+					input.form-control.post-title(name='category', type='text', value=(post.category))
+				.form-group
+					textarea.form-control.post-title(name='body', rows='10' type='text') #{post.body}

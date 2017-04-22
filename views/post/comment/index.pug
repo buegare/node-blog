@@ -4,12 +4,14 @@
 	each comment, i in post.comments
 		.comments-list
 			.row
-				.col-xs-4.name-n-date
-					h6 #[span= comment.name] #{comment.date.toDateString().substring(4)}
-				.col-xs-8.btn-n-decision-icons
-					button(commentId= i).btn.btn-danger.btn-xs.delete-btn Detele Comment
-					span(commentId= i, postTitle= post.title).glyphicon.glyphicon-ok.delete-comment-icon-ok
-					span(commentId= i).glyphicon.glyphicon-remove.delete-comment-icon-remove
-			.row.comment-body
-				h6= comment.body
+				.col-md-6
+					h6 #[span.comment-name= comment.name] #{comment.date.toDateString().substring(4)}
+				if admin
+					.col-md-6.comment-button-area
+						button(commentId= i).btn.btn-danger.btn-xs.delete-btn Detele Comment
+						span(commentId= i, postId= post._id).glyphicon.glyphicon-ok.delete-comment-icon-ok
+						span(commentId= i).glyphicon.glyphicon-remove.delete-comment-icon-remove
+			.row
+				.col-xs-12.comment-body
+					h6= comment.body
 
