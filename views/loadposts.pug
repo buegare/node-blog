@@ -13,7 +13,7 @@ mixin post(index)
 				h5.post-date #[span.category #{posts[index].category}] #{posts[index].date.toDateString().substring(4)}
 			div
 				h2.post-title= posts[index].title
-				p.post-body= `${posts[index].body.substr(0, 200)}...`
+				p.post-body= `${posts[index].body.substr(0, 170)}...`
 
 
 - for (var x = 0; x < posts.length; x += 2) 
