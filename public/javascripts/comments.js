@@ -10,12 +10,12 @@ function decisionIconsHide(e) {
 
 function deleteComment(e) {
 	var commentId = $(e.target).attr('commentId');
-	var postTitle = $(e.target).attr('postTitle');
+	var postId = $(e.target).attr('postId');
 
 	$.ajax({
 		url: "/delete/comment",
 		type: "DELETE",
-		data: {commentId: commentId, postTitle: postTitle},
+		data: {commentId: commentId, postId: postId},
 		success: function(data) {
 			$("#comments").html(data);
 			$('.delete-btn').on('click', function(e) {
@@ -38,7 +38,7 @@ function addNewComment(){
 	var new_comment = {
 		name: $("#new-comment input[name='name']").val(),
 		body: $("#new-comment textarea").val(),
-		post_title: $(location).attr('pathname').split('/')[2]
+		post_slug: $('img').attr('alt')
 	};
 
 	$.ajax({
