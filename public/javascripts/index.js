@@ -7,7 +7,8 @@ $('#arrow-down').on('click', function(){
 	        $(".load-more-posts").append(data);
 	    },
 	    error: function(jqXHR, textStatus, errorThrown) {
-	        console.err('error ' + textStatus + " " + errorThrown);
+	        console.warn(jqXHR.responseText);
+            console.log('error ' + textStatus + " " + errorThrown);
 	    }
 	});
 
