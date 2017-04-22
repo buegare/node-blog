@@ -8,11 +8,14 @@ function hideDecisionIcons() {
 
 function deletePost() {
 	var postId = $('#delete-post-btn').attr('postId');
+	var img = $('img').attr('imgId');
+
+	if(img === 'noimage.png') { img = null; }
 
 	$.ajax({
 		url: "/delete/post",
 		type: "DELETE",
-		data: {postId: postId},
+		data: {postId: postId, img: img},
         success: function() {
         	window.location.replace('/');
         },
@@ -25,13 +28,16 @@ function deletePost() {
 }
 
 function editPost() {
-	var postTitle = $('#edit-post-btn').attr('postTitle');
+	var postSlug = $('#edit-post-btn').attr('postSlug');
 
 	$.ajax({
-		url: "/post/" + postTitle,
+		url: "/post/" + postSlug,
 		type: "GET",
 		success: function(data) {
 			$("#edit-target").html(data);
+			$('#delete-post-btn').on('click', showDecisionIcons);
+			$('#delete-post-icon-remove').on('click', hideDecisionIcons);
+			$('#delete-post-icon-ok').on('click', deletePost);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.warn(jqXHR.responseText);
