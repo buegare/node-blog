@@ -5,16 +5,15 @@ const config = require('../config/server');
 const multer  = require('multer');
 const fs = require('fs');
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './public/images/posts/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, `img-${req.body.title}`);
-  }
-});
+const upload = multer({ dest: './public/images/posts/' });
 
-const upload = multer({ storage: storage });
+const auth = (req, res, next) => {
+  if (req.session && req.session.user === config.admin.username) {
+    return next();
+  } else {
+    return res.sendStatus(401);
+  }
+};
 
 router.get('/', (req, res) => {
 	res.render('./admin/login');
@@ -24,7 +23,6 @@ router.post('/', (req, res) => {
 		if(req.body.username == config.admin.username &&
 		 req.body.password == config.admin.password) {
 		 	req.session.user = req.body.username;
-			req.flash('success_msg', 'Admin logged in successfuly');
 			res.redirect('/');	
 		} else {
 			req.flash('error_msg', 'Invalid credentials');
@@ -33,7 +31,7 @@ router.post('/', (req, res) => {
 	}
 );
 
-router.get('/create/post', (req, res) => {
+router.get('/create/post', auth, (req, res) => {
 	res.render('./admin/newpost');
 });
 
@@ -51,7 +49,7 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 	if(errors) {
 
 		if(req.file) {
-			fs.unlink(`./public/images/posts/${req.file.filename}`, err => {
+			fs.unlink(req.file.path, err => {
 		        if (err) throw(err);
 			});
 		}
@@ -77,7 +75,6 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 	}
 
 	// Success message
-	req.flash('success_msg', 'New Post created successfuly');
   	res.redirect('/');
 
 });
