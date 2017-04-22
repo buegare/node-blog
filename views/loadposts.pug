@@ -16,7 +16,7 @@ mixin post(index)
 				p.post-body= `${posts[index].body.substr(0, 170)}...`
 
 
-- for (var x = 0; x < posts.length; x += 2) 
+- for (let x = 0; x < posts.length; x += 2) 
 	.row
 		+post(x)
 		+post(x + 1)
