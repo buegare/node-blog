@@ -46,7 +46,6 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 	
 	// Check for errors
 	let errors = req.validationErrors();
-
 	if(errors) {
 
 		if(req.file) {
@@ -54,7 +53,6 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 		        if (err) throw(err);
 			});
 		}
-
 
 		res.render('admin/newpost', {
 			errors: errors,
@@ -72,12 +70,23 @@ router.post('/create/post', upload.single('postimage'), (req, res, next) => {
 		});
 
 		// Create Post
-		Post.createPost(newPost);
+		Post.createPost(newPost, (err, post) => {
+	
+			if(err) {
+				res.render('admin/newpost', {
+					errors: err.code === 11000 ? 
+										 [{ msg: 'There is a post with the same name, choose another one.'}] : 
+										 console.error(err),
+					title: req.body.title,
+					body: req.body.body,
+					category: req.body.category
+				});
+			} else {
+				console.log(post);
+				res.redirect('/');
+			}
+		});
 	}
-
-	// Success message
-  	res.redirect('/');
-
 });
 
 router.get('/logout', (req, res) => {

@@ -10,14 +10,16 @@ db.on('error', console.error.bind(console, 'connection error:'));
 // Post Schema
 
 let PostSchema = mongoose.Schema({
-	title: { type: String, index: true, require: true },
-	slug: { type: String, require: true },
+	title: { type: String, require: true },
+	slug: { type: String, index: true, require: true, unique: true },
 	category: { type: String, require: true },
 	body: { type: String, require: true },
 	image: { type: String},
 	comments: [{ body: String, date: { type: Date, default: Date.now }, name: String}],
   	date: { type: Date, default: Date.now },
 });
+
+PostSchema.path('slug').index({ unique: true });
 
 const Post = module.export = db.model('Post', PostSchema);
 module.exports = Post;
@@ -35,13 +37,12 @@ module.export.getPosts = function(skip, limit, cb) {
 	}).sort('-date').skip(skip).limit(limit);
 };
 
-module.export.createPost = function(newPost) {
+module.export.createPost = function(newPost, cb) {
 	
 	newPost.slug = slugfy(newPost.title);
 
 	newPost.save((err, post) => {
-		if (err) return console.error(err);
-		console.log(post);
+		return cb(err, post);
 	});
 };
 

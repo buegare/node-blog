@@ -7,7 +7,7 @@ block content
 				h1.text-center New Post
 				if errors
 					ul.form-errors
-						each error, i in errors
+						each error in errors
 							li.alert.alert-danger #{error.msg}
 				form(method='post', action='/admin/create/post', enctype='multipart/form-data')
 					.form-group
